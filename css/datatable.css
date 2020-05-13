@@ -1,0 +1,282 @@
+
+.container {width: calc(100% -60px); margin: 0 30px;}
+.dataTable {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+.dataTable-toolbar,
+.dataTable-header-toolbar,
+.dataTable-content-toolbar,
+.col-header,
+.col-search,
+.col-search button,
+.dataTable-table th.th-sticky,
+.dataTable-table td.td-sticky {
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* -------------- ToolBar -------------- */
+.dataTable-toolbar {
+    display: flex;
+    width: 100%;
+    height: 27px;
+    background-color: #666;
+    border-bottom: 1px solid #666;
+    z-index:2;
+}
+.dataTable-content-info {
+    width: 120px;
+    line-height : 1.5rem;
+    text-align: center;
+    font-size:11px;
+    color: #fff;
+}
+.dataTable-toolbar button {
+    height: 27px;
+    margin:0;
+    padding:0 10px;
+    line-height: 1rem;
+    cursor: pointer;
+    border: 0;
+}
+.dataTable-toolbar button.btn-green:hover {
+    background-color: rgb(4, 180, 4, 0.7);
+}
+.dataTable-toolbar button svg use {
+    fill: #ccc !important;
+}
+.dataTable-toolbar button:hover svg use {
+    fill: #fff !important;
+}
+.dataTable-toolbar button .svg-wrapper {
+    padding-top: 2px;
+}
+.dataTable-toolbar button .svg-wrapper svg {
+    width: 18px;
+    height: 18px;
+}
+.dataTable-toolbar .inpt-content-length {
+    width: 80px;
+    text-align: center;
+}
+.dataTable-toolbar .inpt-step {
+    width: 60px;
+    text-align: right;
+    padding-right: 3px;
+}
+.dataTable-toolbar .btn-green {
+    background-color: #04B404;
+    color: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #e5e5e5;
+}
+.dataTable-toolbar .btn-blue {
+    background-color: #2E9AFE;
+    color: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #e5e5e5;
+}
+.dataTable-toolbar .dataTable-search-wrapper-str,
+.dataTable-toolbar .dataTable-search-wrapper-date {
+    display: none;
+    width: 150px;
+    height: 27px;
+}
+.dataTable-toolbar .dataTable-search-wrapper-str.active,
+.dataTable-toolbar .dataTable-search-wrapper-date.active {
+    display: flex;
+}
+.dataTable-toolbar .dataTable-search-wrapper-date {
+    position: relative;
+    background-color: #2E9AFE;
+    color: #fff;
+}
+.dataTable-toolbar .dataTable-search-wrapper-date > span {
+    padding: 0 3px;
+}
+.dataTable-toolbar .dataTable-search-wrapper-date .date-menu {
+    display: none;
+    position: absolute;
+    top: 27px;
+    z-index:2;
+    white-space: nowrap;
+}
+.dataTable-toolbar .dataTable-search-wrapper-date input {
+    width: 80px;
+    border:0;
+}
+.dataTable-toolbar .dataTable-search-wrapper-str input {
+    width: 130px;
+    border:0;
+}
+.dataTable-toolbar .dataTable-search-wrapper-str .btn-search,
+.dataTable-toolbar .dataTable-search-wrapper-date .btn-search {
+    padding: 3px 5px 0 5px;
+    cursor: pointer;
+}
+.dataTable-toolbar .dataTable-search-wrapper-str .btn-search svg,
+.dataTable-toolbar .dataTable-search-wrapper-date .btn-search svg {
+    fill: #fff !important;
+}
+/* -------------- Dropdown -------------- */
+.dataTable-col-toggle-wrapper {
+    position: relative;
+    margin:0;
+    padding:0;
+}
+.dataTable-col-toggle-list {
+    position: absolute;
+    width: 180px;
+    height: 230px;
+    overflow: auto;
+    z-index: 2;
+    background-color: transparent;
+    display: none;
+}
+.dataTable-col-toggle-list.toggle-top {
+    top: 27px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.dataTable-col-toggle-list.toggle-bottom {
+    bottom: 27px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.dataTable-col-toggle-list > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 5px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    font-size: 11px;
+}
+.dataTable-col-toggle-list > div:hover {
+    background-color: #666;
+    color: #fff;
+}
+/* -------------- Table -------------- */
+.dataTable-wrapper {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-color: #fff;
+    overflow: scroll;
+    z-index:1;
+}
+.dataTable-table {
+    display: table;
+    margin: 0;
+    padding: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.dataTable-table th {
+    height: 27px;
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5;
+    white-space:nowrap;
+    font-size: 11px;
+}
+.dataTable-table thead .col-header-wrapper {
+    display:flex; justify-content:space-between;height:27px;
+    width: 100%;
+    text-align: center;
+}
+.dataTable-table th, td {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.dataTable-table th.th-sticky {
+    top:0;
+    left:0;
+    background-color: #666;
+    color: #fff;
+    z-index: 100;
+}
+.dataTable-table td {
+    white-space:nowrap;
+    background-color: #fff;
+    height: 27px;
+    text-align: center;
+    padding: 0 10px;
+}
+.dataTable-table td.td-sticky {
+    position: sticky;
+    left: 0;
+    background-color: #666;
+    color: #fff;
+    font-size: 11px;
+}
+.dataTable-table td.td-sticky span.rowIndex {
+    padding-top: 3px;
+    padding-right: 10px;
+}
+.col-header-label {
+    margin: 0 auto;
+    padding:0 10px;
+    line-height: 1.6rem;
+}
+
+.dataTable-content .data-row:hover td.data-col,
+.dataTable-content .data-row.active td.data-col{
+    background-color: #2E9AFE;
+    color: #fff;
+    cursor: pointer;
+}
+.dataTable-content .data-row:hover td.td-sticky {
+    color: rgb(47, 172, 255);
+}
+/* -------------- Order item box -------------- */
+.order-box-container {
+    display:flex;
+    flex-wrap:wrap;
+    width:10px;
+    height:23px;
+    padding-top: 2px;
+}
+.order-box-container span {
+    margin:0;
+    padding:0;
+    height: 10px;
+}
+.order-box-container svg:first-child {
+    margin-bottom:1px;
+}
+.order-box-container .svg-arrow use {
+    fill: #666 !important;
+}
+.order-box-container .svg-arrow-item:hover .svg-arrow use,
+.order-box-container .svg-arrow-item.active .svg-arrow use {
+    fill: #30bf2d !important;
+}
+/* -------------- Search column -------------- */
+.col-search {
+    position: absolute;
+    top: 27px;
+    width: 150px;
+    padding-top: 3px;
+    /* background-color: #999; */
+    font-size:11px;
+}
+.col-search input {
+    border: 0;
+    line-height: 1.6rem;
+    width: 194px;
+    margin:0;
+    padding:0 3px;
+    background-color: #f5f5f5;
+}
+.col-search button {
+    width: 200px;
+    color: #fff;
+    line-height: 1.5rem;
+    cursor: pointer;
+    background-color: green;
+    border: 0;
+}
