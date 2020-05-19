@@ -26,3 +26,9 @@ It's a prototype and you are welcome to make it more useful.
  - Hide / Show columns
  - Mark / Umark / Show rows
  - Search in columns (Strings, Date)
+
+ #### Notice
+
+ - All JS-Files (js/source) now are standalones for easy developing.
+
+ - It' recommend to minify them to one file if using in production.
