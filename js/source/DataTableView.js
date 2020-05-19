@@ -130,7 +130,7 @@ class DataTableView
         col.className = 'col-toggle-list';
         col.innerHTML = this.config.tpl.searchToggleList.replace("{%column%}", val);      
         parent.appendChild(col); 
-        col.onclick = () => { this.DataTable.Event.searchToggleEvent(col, index); };
+        col.onclick = () => { this.DataTable.Event.searchToggleEvent(col, val, index); };
     }
 
     setDateSelcectOption ()

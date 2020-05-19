@@ -5,6 +5,7 @@ class DataTableMock
     {    
         
         $result = ["content" => []];
+        $dateCount = 1;
 
         for ($n = $config->start; $n <= $config->end; $n++) {
             $row = [];
@@ -17,9 +18,19 @@ class DataTableMock
 
             for ($i = 1 ; $i <= $maxCol; $i++) { 
                 if ($setCol) {
-                    $result["header"][] = "col $i";
+                    $result["header"][] = ($i > 1) ? "Column $i" : "Date";
                 }
-                $row[] = "row $n / val $i"; 
+                if ($i > 1) {
+                    $row[] = "row $n / val $i"; 
+                } else {
+                    $dateStr = strtotime(date("d.m.Y")) - ((60*60) * (3600 * $dateCount));
+                    if ($dateCount < 10) {
+                        $dateCount++;
+                    } else {
+                        $dateCount = 1;
+                    }
+                    $row[] = date("d.m.Y",$dateStr);
+                }
             }
             $result["content"][] = $row;
         }
@@ -64,15 +75,15 @@ class DataTableMock
 
     public static function getCsvLen ()
     {
-        $resCsv = ["header" => [],"content" => []];
-        if (($handle = fopen("testdaten.csv", "r")) !== FALSE) {
-            $row = 0;
+        $row = 0;
+
+        if (($handle = @fopen("testdaten.csv", "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 $row++;
             }
             fclose($handle);
         } 
-        return  $row - 1;
+        return  ($row) ? $row - 1 : 450;
     }
 }
 

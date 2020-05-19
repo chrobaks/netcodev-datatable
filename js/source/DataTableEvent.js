@@ -46,7 +46,7 @@ class DataTableEvent
         this.DataTable.View.setColumnUpdate(obj.dataset.colIndex, status);
     }
 
-    searchToggleEvent (obj, index)
+    searchToggleEvent (obj, val, index)
     {
         const parent = this.DataTable.View.getClosest('dataTable-col-toggle-wrapper',obj);
         const container = this.DataTable.View.getClosest('dataTable-toolbar',parent);
