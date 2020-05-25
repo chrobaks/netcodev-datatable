@@ -2,18 +2,27 @@ class DataTable
 {
     constructor(containerId, config) 
     {
+        // Set config
         this.config = DataTableConf.getConf(config);
         this.config.dom.container = document.getElementById(containerId);
-        for (let key in this.config.domId) {
-            this.config.dom[key] = this.config.dom.container.getElementsByClassName(this.config.domId[key])[0];
-        }
-
+        // Render appp
+        this.setApp();
+        // Init components
         this.Search  = new DataTableSearch();
         this.View    = new DataTableView(this, this.config);
         this.Toolbar = new DataTableToolBar(this, this.config);
         this.Event   = new DataTableEvent(this, this.config);
-        
+        // Set data request
         this.setRequest();
+    }
+
+    setApp ()
+    {
+        this.config.tpl.app.map((row) => {this.config.dom.container.innerHTML += row;});
+
+        for (let key in this.config.domId) {
+            this.config.dom[key] = this.config.dom.container.getElementsByClassName(this.config.domId[key])[0];
+        }
     }
 
     setRequest (act = "")
