@@ -1,8 +1,8 @@
 class DataTableToolBar
 {
-    constructor(DataTable, config) {
+    constructor(DataTable) {
         this.DataTable = DataTable;
-        this.config    = config;
+        this.config    = DataTable.config;
     }
 
     setToolbarEvent ()
@@ -47,7 +47,7 @@ class DataTableToolBar
         this.config.dom.btnNext.onclick = () => {this.setStep(1);};
         this.config.dom.btnBack.onclick = () => {this.setStep(0);};
         this.config.dom.btnStep.onclick = () => {
-            let intVal = this.getValidInpt({
+            let intVal = DataTableUtile.getValidInpt({
                 inpt : this.config.dom.inptStep,
                 max  : this.config.dataConfig.maxStep,
                 default : this.config.dataConfig.dataStep
@@ -58,7 +58,7 @@ class DataTableToolBar
             }
         };
         this.config.dom.btnContLen.onclick = () => {
-            let intVal = this.getValidInpt({
+            let intVal = DataTableUtile.getValidInpt({
                 inpt : this.config.dom.inptContentLength,
                 max  : this.config.dataConfig.maxLen,
                 default : this.config.dataConfig.stepLen
@@ -109,24 +109,6 @@ class DataTableToolBar
         this.config.dom.container.getElementsByClassName('dataTable-search-wrapper-date')[0].onmouseenter = () => { this.config.searchDate.show = true; };
         this.config.dom.container.getElementsByClassName('dataTable-search-wrapper-date')[0].onmouseleave = () => { this.config.searchDate.show = false; };
     };
-
-    getValidInpt (obj)
-    {
-        let intVal = obj.inpt.value.trim();
-        let res = null;
-
-        if (/^[\d]+$/.test(intVal) && intVal) {
-            if (obj.max < intVal) {
-                intVal = obj.max;
-                obj.inpt.value = intVal;
-             }
-            res = intVal*1;
-        } else {
-            obj.inpt.value = obj.default;
-        }
-
-        return res;
-    }
 
     setStep (next, isOneStep = 1)
     {

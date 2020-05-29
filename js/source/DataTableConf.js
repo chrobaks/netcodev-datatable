@@ -6,6 +6,7 @@ class DataTableConf
             dataTable       : [],
             dataTableCache  : [],
             dataTableClone  : "",
+            dataLang        : "de",
             dataIndex       : 0,
             dataConfig      : {
                 dataStep  : 1,

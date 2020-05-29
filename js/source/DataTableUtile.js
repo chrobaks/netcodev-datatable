@@ -1,4 +1,4 @@
-class DataTableSort 
+class DataTableUtile 
 {
     static getStrNumber (i, str)
     {
@@ -25,27 +25,52 @@ class DataTableSort
         return 0;
     }
 
-    static getSort (arr, orderAsc)
+    static getSort (arr, orderAsc, config)
     {
         let res = arr;
-        res.sort(function (a,b) { return DataTableSort.getSortRes(a[1], b[1], orderAsc) });
+        res.sort(function (a,b) { return DataTableUtile.getSortRes(a[1], b[1], orderAsc) });
         
         return res.sort(function (a,b) { 
             if (/^[\d]{2}\.[\d]{2}\.[\d]{4}$/.test(a[1]) && /^[\d]{2}\.[\d]{2}\.[\d]{4}$/.test(b[1])) {
-                return DataTableSort.sortDate(a[1],b[1],orderAsc);
+                return DataTableUtile.sortDate(a[1], b[1], orderAsc, config.dataLang);
             } else {
-                return DataTableSort.sortString(a,b,orderAsc);
+                return DataTableUtile.sortString(a,b,orderAsc);
             }
         });
     }
-    
-    static sortDate (a, b, orderAsc) 
+
+    static getLangDate (date, lang)
     {
-        const aDate = a.split('.');
-        const bDate = b.split('.');
-        const dateA = new Date(aDate[2]*1,aDate[1]*1 - 1,aDate[0]*1).getTime();
-        const dateB = new Date(bDate[2]*1,bDate[1]*1 - 1,bDate[0]*1).getTime();
-        return DataTableSort.getSortRes(dateA, dateB, orderAsc);
+        date = date.split('.');
+        const res = (lang === 'de')  ? new Date(date[2]*1,date[1]*1 - 1,date[0]*1).getTime() : new Date(date[2]*1,date[0]*1 - 1,date[1]*1).getTime();
+
+        return res;
+    }
+    
+    static sortDate (a, b, orderAsc, dataLang) 
+    {
+        const dateA = DataTableUtile.getLangDate(a, dataLang);
+        const dateB = DataTableUtile.getLangDate(b, dataLang);
+
+        return DataTableUtile.getSortRes(dateA, dateB, orderAsc);
+    }
+
+    static getValidInpt (obj)
+    {
+        let intVal = obj.inpt.value.trim();
+        let res = null;
+
+        if (/^[\d]+$/.test(intVal) && intVal) {
+            if (obj.max < intVal) {
+                intVal = obj.max;
+                obj.inpt.value = intVal;
+             }
+            res = intVal*1;
+        } else {
+            obj.inpt.value = obj.default;
+        }
+
+        return res;
     }
 
     static sortString (a, b, orderAsc) 
@@ -71,7 +96,7 @@ class DataTableSort
                         n1 = 1;
                     }
                 }
-                return DataTableSort.getSortRes(n0, n1, orderAsc);
+                return DataTableUtile.getSortRes(n0, n1, orderAsc);
             }
             if (arr1.length <= i && res0 === res1 || arr0[i] != arr1[i] && /^[\d]$/.test(arr1[i])) { 
                 return (!orderAsc) ? 1 > 0 :1 < 0;
@@ -79,11 +104,11 @@ class DataTableSort
                 res0 = arr0[i]; 
                 res1 = arr1[i]; 
                 if (arr0[i] != arr1[i]) { 
-                    return DataTableSort.getSortRes(arr0[i], arr1[i], orderAsc);
+                    return DataTableUtile.getSortRes(arr0[i], arr1[i], orderAsc);
                 }
             }
         }
         
-        return DataTableSort.getSortRes(res1, res0, orderAsc);
+        return DataTableUtile.getSortRes(res1, res0, orderAsc);
     }
 }

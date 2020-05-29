@@ -6,8 +6,8 @@ class DataTableSearch
 
     getSearch (srchConf)
     {
-        let result = [];
         const list = this.config.content.querySelectorAll('.data-row');
+        let result = [];
         let revertIndex = list.length - 1;
         srchConf.val = srchConf.val.toLowerCase();
         srchConf.colIndex = srchConf.colIndex*1;
@@ -19,14 +19,10 @@ class DataTableSearch
 
             if (srchConf.type === 'date' && srchConf.hasOwnProperty('dateEnd')) {
                 
-                let sDate = srchConf.val.split('.');
-                let eDate = srchConf.dateEnd.split('.');
-                colVal1 = colVal1.split('.');
-                colVal2 = colVal2.split('.');
-                sDate = new Date(sDate[2]*1,sDate[1]*1 - 1,sDate[0]*1).getTime();
-                eDate = new Date(eDate[2]*1,eDate[1]*1 - 1,eDate[0]*1).getTime();
-                colVal1 = new Date(colVal1[2]*1,colVal1[1]*1 - 1,colVal1[0]*1).getTime();
-                colVal2 = new Date(colVal2[2]*1,colVal2[1]*1 - 1,colVal2[0]*1).getTime();
+                let sDate = DataTableUtile.getLangDate(srchConf.val, this.config.dataLang);
+                let eDate = DataTableUtile.getLangDate(srchConf.dateEnd, this.config.dataLang);
+                colVal1 = DataTableUtile.getLangDate(colVal1, this.config.dataLang);
+                colVal2 = DataTableUtile.getLangDate(colVal2, this.config.dataLang);
 
                 if (colVal1 >= sDate && colVal1 <= eDate) {
                     result.push(list[i].dataset.rowIndex*1);
@@ -67,9 +63,7 @@ class DataTableSearch
             let rowId = this.config.content.getElementsByClassName("data-row")[i].dataset.rowIndex*1;
             arrIndex.push([rowId, this.config.dataTable[rowId][colIndex]]);
         }
-        arrIndex = DataTableSort.getSort(arrIndex,asc);
-        
-        
+        arrIndex = DataTableUtile.getSort(arrIndex,asc, this.config);
         
         for (let n = 0; n < arrIndex.length; n++) {
             arrRes.push(this.config.dataTable[arrIndex[n][0]*1]);

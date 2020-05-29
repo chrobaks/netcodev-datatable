@@ -1,8 +1,8 @@
 class DataTableEvent
 {
-    constructor(DataTable, config) {
+    constructor(DataTable) {
         this.DataTable = DataTable;
-        this.config    = config;
+        this.config    = DataTable.config;
     }
 
     headerEvent ()

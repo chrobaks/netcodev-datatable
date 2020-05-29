@@ -1,8 +1,8 @@
 class DataTableView
 {
-    constructor(DataTable, config) {
-        this.DataTable = DataTable;
-        this.config    = config;
+    constructor(DataTable) {
+        this.Event  = DataTable.Event;
+        this.config = DataTable.config;
     }
 
     setHeader (arrData)
@@ -119,7 +119,7 @@ class DataTableView
         col.className = 'col-toggle-list';
         col.innerHTML = this.config.tpl.columnToggleList.replace("{%column%}", val);      
         parent.appendChild(col); 
-        col.onclick = () => {this.DataTable.Event.colToggleEvent(col);}
+        col.onclick = () => {this.Event.colToggleEvent(col);}
     }
     
     setSearchToggleList (parent, val) 
@@ -130,7 +130,7 @@ class DataTableView
         col.className = 'col-toggle-list';
         col.innerHTML = this.config.tpl.searchToggleList.replace("{%column%}", val);      
         parent.appendChild(col); 
-        col.onclick = () => { this.DataTable.Event.searchToggleEvent(col, val, index); };
+        col.onclick = () => { this.Event.searchToggleEvent(col, val, index); };
     }
 
     setDateSelcectOption ()

@@ -5,13 +5,13 @@ class DataTable
         // Set config
         this.config = DataTableConf.getConf(config);
         this.config.dom.container = document.getElementById(containerId);
-        // Render appp
-        this.setApp();
         // Init components
         this.Search  = new DataTableSearch();
-        this.View    = new DataTableView(this, this.config);
-        this.Toolbar = new DataTableToolBar(this, this.config);
-        this.Event   = new DataTableEvent(this, this.config);
+        this.Event   = new DataTableEvent(this);
+        this.View    = new DataTableView(this);
+        this.Toolbar = new DataTableToolBar(this);
+        // Render appp
+        this.setApp();
         // Set data request
         this.setRequest();
     }
@@ -23,6 +23,7 @@ class DataTable
         for (let key in this.config.domId) {
             this.config.dom[key] = this.config.dom.container.getElementsByClassName(this.config.domId[key])[0];
         }
+        this.Search._config = {"dataLang": this.config.dataLang};
     }
 
     setRequest (act = "")
