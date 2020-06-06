@@ -14,8 +14,8 @@ It's a prototype and you are welcome to make it more useful.
  #### Allow following sort options
 
  - Sort a_1, a_11, a_100
- - Sort single date (german format d.m.Y)
- - Sort date from - date to (german format d.m.Y)
+ - Sort single date (german format d.m.Y / english format m.d.Y)
+ - Sort date from - date to (german format d.m.Y / english format m.d.Y)
 
  #### Functions
 
@@ -26,6 +26,7 @@ It's a prototype and you are welcome to make it more useful.
  - Hide / Show columns
  - Mark / Umark / Show rows
  - Search in columns (Strings, Date)
+ - Change language (Button Text)
 
  #### Notice
 

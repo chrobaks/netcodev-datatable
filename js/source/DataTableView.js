@@ -150,6 +150,18 @@ class DataTableView
         this.config.dom.container.querySelectorAll('.slct-date.date-year').forEach((slct) => { slct.innerHTML = yOpt; });
     }
 
+    setAppTpl ()
+    {
+        let res = "";
+        this.config.tpl.app.map((row) => {res += row;});
+
+        for (let key in this.config.lang[this.config.tplLang]) {
+            res = res.replace("{%" + key + "%}", this.config.lang[this.config.tplLang][key]);
+        }
+
+        this.config.dom.container.innerHTML = res;
+    }
+
     getColumnType (colIndex)
     {
         let res = {date:0, str:0};

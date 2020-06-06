@@ -19,10 +19,10 @@ class DataTableSearch
 
             if (srchConf.type === 'date' && srchConf.hasOwnProperty('dateEnd')) {
                 
-                let sDate = DataTableUtile.getLangDate(srchConf.val, this.config.dataLang);
-                let eDate = DataTableUtile.getLangDate(srchConf.dateEnd, this.config.dataLang);
-                colVal1 = DataTableUtile.getLangDate(colVal1, this.config.dataLang);
-                colVal2 = DataTableUtile.getLangDate(colVal2, this.config.dataLang);
+                let sDate = DataTableUtile.getLangDate(srchConf.val, this.config.dateLang);
+                let eDate = DataTableUtile.getLangDate(srchConf.dateEnd, this.config.dateLang);
+                colVal1 = DataTableUtile.getLangDate(colVal1, this.config.dateLang);
+                colVal2 = DataTableUtile.getLangDate(colVal2, this.config.dateLang);
 
                 if (colVal1 >= sDate && colVal1 <= eDate) {
                     result.push(list[i].dataset.rowIndex*1);

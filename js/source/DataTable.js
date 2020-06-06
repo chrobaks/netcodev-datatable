@@ -18,12 +18,22 @@ class DataTable
 
     setApp ()
     {
-        this.config.tpl.app.map((row) => {this.config.dom.container.innerHTML += row;});
+        this.View.setAppTpl();
 
         for (let key in this.config.domId) {
             this.config.dom[key] = this.config.dom.container.getElementsByClassName(this.config.domId[key])[0];
         }
-        this.Search._config = {"dataLang": this.config.dataLang};
+
+        this.Search._config = {"dateLang": this.config.dateLang};
+    }
+
+    setAppLang (lang)
+    {
+        if (this.config.lang.hasOwnProperty(lang)) {
+            this.config.tplLang = lang;
+            this.setApp();
+            this.setRequest();
+        }
     }
 
     setRequest (act = "")

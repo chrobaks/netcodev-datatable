@@ -32,7 +32,7 @@ class DataTableUtile
         
         return res.sort(function (a,b) { 
             if (/^[\d]{2}\.[\d]{2}\.[\d]{4}$/.test(a[1]) && /^[\d]{2}\.[\d]{2}\.[\d]{4}$/.test(b[1])) {
-                return DataTableUtile.sortDate(a[1], b[1], orderAsc, config.dataLang);
+                return DataTableUtile.sortDate(a[1], b[1], orderAsc, config.dateLang);
             } else {
                 return DataTableUtile.sortString(a,b,orderAsc);
             }
@@ -47,10 +47,10 @@ class DataTableUtile
         return res;
     }
     
-    static sortDate (a, b, orderAsc, dataLang) 
+    static sortDate (a, b, orderAsc, dateLang) 
     {
-        const dateA = DataTableUtile.getLangDate(a, dataLang);
-        const dateB = DataTableUtile.getLangDate(b, dataLang);
+        const dateA = DataTableUtile.getLangDate(a, dateLang);
+        const dateB = DataTableUtile.getLangDate(b, dateLang);
 
         return DataTableUtile.getSortRes(dateA, dateB, orderAsc);
     }
