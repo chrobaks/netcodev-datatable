@@ -10,7 +10,7 @@ class DataTableView
         const tr = document.createElement("tr");
         const stickyBox = document.createElement("th");
         stickyBox.classList.add('th-sticky');
-        stickyBox.appendChild(document.createTextNode("Zeile"));
+        stickyBox.appendChild(document.createTextNode("Nr.:"));
         tr.appendChild(stickyBox);
         arrData.map((colVal) => { 
             this.setColumn(tr, colVal, "col-header"); 

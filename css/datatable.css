@@ -217,6 +217,10 @@
     padding-top: 3px;
     padding-right: 10px;
 }
+.col-header {
+    cursor: pointer;
+}
+
 .col-header-label {
     margin: 0 auto;
     padding:0 10px;
@@ -251,7 +255,7 @@
 .order-box-container .svg-arrow use {
     fill: #666 !important;
 }
-.order-box-container .svg-arrow-item:hover .svg-arrow use,
+
 .order-box-container .svg-arrow-item.active .svg-arrow use {
     fill: #30bf2d !important;
 }

@@ -11,14 +11,19 @@ class DataTableEvent
             
         for (let col=0; col < listColHeader.length;col++) {
 
-            listColHeader[col].querySelectorAll('.svg-arrow-item').forEach((obj) => 
-            {
+            listColHeader[col].onclick = () => {
+                
                 const index = listColHeader[col].dataset.colIndex;
+                const activeArrow = listColHeader[col].querySelectorAll('.svg-arrow-item.active').length;
+                let arrow = null;
 
-                obj.onclick = () => {
-                    this.DataTable.setSortDataTable(index, obj);
+                if (!activeArrow) {
+                    arrow = listColHeader[col].querySelectorAll('.svg-arrow-item')[0];
+                } else {
+                    arrow = (listColHeader[col].querySelectorAll('.svg-arrow-item')[0].classList.contains('active')) ? listColHeader[col].querySelectorAll('.svg-arrow-item')[1] : listColHeader[col].querySelectorAll('.svg-arrow-item')[0];
                 }
-            });
+                this.DataTable.setSortDataTable(index, arrow);
+            };
         }
     }
 
